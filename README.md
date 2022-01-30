@@ -9,4 +9,4 @@ To create a new ticket press the plus button present in the home page header. it
 
 After filling out the necessary information, Click Create Button and the data will be stored in the database and you will be notified with a "Ticket Successfully Created" Dialouge.
 
-Youcan keep track of all the tickets from the tickets list on The Homepage.
+You can keep track of all the tickets from the tickets list on The Homepage.
