@@ -1,0 +1,30 @@
+.card {
+    border: solid 1px grey;
+    border-radius: 8px;
+    padding: 10px;
+}
+.button_delete {
+    padding: 3px;
+    border: solid 1px red;
+    border-radius: 8px;
+    color: red;
+}
+.button_edit {
+    margin: 2%;
+    padding: 3px;
+    border: solid 1px red;
+    border-radius: 8px;
+    color: white;
+    background-color: red;
+}
+.td_status {
+    color: red;
+}
+.td_header {
+    padding: 10px;
+}
+#div_header {
+    background-color: red;
+    font-size: 17px;
+    color: white;
+}

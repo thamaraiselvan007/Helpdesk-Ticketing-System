@@ -1,0 +1,29 @@
+.button_cancel {
+    padding: 3px;
+    border: solid 1px red;
+    border-radius: 8px;
+    color: red;
+}
+.button_create {
+    margin: 2%;
+    padding: 3px;
+    border: solid 1px red;
+    border-radius: 8px;
+    color: white;
+    background-color: red;
+}
+#div_header {
+    padding: 1%;
+    background-color: red;
+    font-size: 21px;
+    color: white;
+}
+.td_header_text {
+    padding-left: 40px;
+}
+.td_status {
+    color: red;
+}
+.mandatory_star {
+    color: red;
+}

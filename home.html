@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="response.js"></script> -->
+    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" id="div_home">
+        <div id="div_header">
+            <table>
+                <tr>
+                    <td class="td_header" onclick="logout()">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                    </td>
+                    <td class="td_header">My help Desk Tickets</td>
+                    <td class="td_header">
+                        <a href="create.html"><button><span class="glyphicon glyphicon-plus" aria-hidden="true"></button></span></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div id="div_body">
+            <br/><br/><br/>
+            <center>
+                loading ...
+                </center>
+        </div>
+    </div>
+</body>
+<script>
+    // console.log(tickets);
+    function show_tickets(tickets) {
+        console.log(tickets.length);
+        var a_card = "<div class='card' id='div_card'><table><tr><td>ID:<span>__ID__</span></td><td class='td_status'>__STATUS__</td></tr><tr><td>__TITLE__</td></tr><tr><td>PRIORITY<br/>__PRIORITY__</td><td>ASSIGNED TO<br/>__ASSIGNED_TO__</td></tr></table><hr/><table><tr><td><button class='button_delete'>DELETE</button></td><td><a href='edit.html'><button class='button_edit'>EDIT</button></a></td></tr></table></div>";
+        var full_code = "";
+        for (var i=0;i<tickets.length;i++) {
+            var new_card = a_card.replace("__ID__", tickets[i]["id"])
+            .replace("__STATUS__", tickets[i]["status"])
+            .replace("__TITLE__", tickets[i]["title"])
+            .replace("__PRIORITY__", tickets[i]["priority"])
+            .replace("__ASSIGNED_TO__", tickets[i]["assigned_to"]);
+            full_code += new_card + "<br/>";
+        }
+        document.getElementById("div_body").innerHTML = full_code;
+    }
+    function logout() {}
+    function get_tickets() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(xhttp.responseText);
+                //document.getElementById("demo").innerHTML = xhttp.responseText;//
+                show_tickets(JSON.parse(xhttp.responseText));
+            }
+        };
+        xhttp.open("GET", "http://localhost:3000/get_tickets", true);
+        xhttp.send();
+    }
+    get_tickets();
+</script>
+</html>

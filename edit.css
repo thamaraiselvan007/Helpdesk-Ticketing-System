@@ -1,0 +1,13 @@
+#div_header {
+    padding: 1%;
+    background-color: red;
+    font-size: 21px;
+    color: white;
+}
+.card {
+    border: solid 1px gray;
+    border-radius: 8px;
+    padding: 2%;
+    background-color: rgb(50, 50, 50);
+    color: white;
+}

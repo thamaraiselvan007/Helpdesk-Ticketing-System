@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="response.js"></script>
+    <link rel="stylesheet" href="create.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" id="div_home">
+        <div id="div_header">
+            <table>
+                <tr>
+                    <td class="td_header" onclick="logout()">
+                        <a href="home.html"><button><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button></a>
+                    </td>
+                    <td class="td_header_text">Create Ticket</td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div id="div_body">
+            <div id="div_element">
+                <table>
+                    <tr>
+                        <td>TICKET ID:</td>
+                        <td><input class="form-control" id="input_id"/></td>
+                    </tr>
+                    <tr>
+                        <td>STATUS:</td>
+                        <td class="td_status">NOT STARTED</td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div id="div_element">
+                TITLE
+                <!-- <span class="mandatory_star">*</span> -->
+                <br/>
+                <input class="form-control" id="input_title"/>
+            </div>
+            <div id="div_element">
+                CATEGORY
+                <br/>
+                <select class="form-control" id="select_category"></select>
+            </div>
+            <div id="div_element">
+                PRIORITY
+                <br/>
+                <select class="form-control" id="select_priority"></select>
+            </div>
+            <div id="div_element">
+                DESCRIPTION
+                <br/>
+                <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <br/>
+            <table>
+                <tr>
+                    <td>
+                        <button class="button_cancel">CANCEL</button>
+                    </td>
+                    <td>
+                        <button class="button_create" onclick="fetch_data()">CREATE</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    // console.log(tickets);
+    function set_category() {
+        var full_code = "";
+        for (var i=0;i<categories.length;i++) {
+            full_code += "<option>"+categories[i]+"</option>";
+        }
+        document.getElementById("select_category").innerHTML = full_code;
+    }
+    set_category();
+    function set_priority() {
+        var full_code = "";
+        for (var i=0;i<priorities.length;i++) {
+            full_code += "<option>"+priorities[i]+"</option>";
+        }
+        document.getElementById("select_priority").innerHTML = full_code;
+    }
+    set_priority();
+    function fetch_data() {
+        var data = {
+            "id": document.getElementById("input_id").value,
+            "title": document.getElementById("input_title").value,
+            "category": document.getElementById("select_category").value,
+            "priority": document.getElementById("select_priority").value,
+            "description": document.getElementById("description").value,
+            "status": "NOT STARTED",
+            "date_time": "2022 Jan 30, 10:04",
+            "created_by": "Emp1",
+            "last_modified_time": "2022 Jan 30, 10:05",
+            "last_modified_by": "Emp1",
+            "assigned_to": "Emp2"
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // console.log(xhttp.responseText);
+                alert("Ticket Created");
+                //document.getElementById("demo").innerHTML = xhttp.responseText;//
+            }
+        };
+        xhttp.open("POST", "http://localhost:3000/create", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(data));
+    }
+</script>
+</html>

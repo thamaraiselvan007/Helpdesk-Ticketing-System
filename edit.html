@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="response.js"></script>
+    <link rel="stylesheet" href="edit.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" id="div_home">
+        <div id="div_header">
+            <table>
+                <tr>
+                    <td class="td_header" onclick="logout()">
+                        <a href="home.html"><button><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></button></a>
+                    </td>
+                    <td class="td_header_text">Edit Ticket</td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+        <div id="div_body">
+            <div class="card">
+                <table>
+                    <tr>
+                        <td>ID:</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            My Laptop is not working
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>CREATED:</td>
+                        <td>time</td>
+                    </tr>
+                    <tr>
+                        <td>CREATED BY:</td>
+                        <td>Emp1</td>
+                    </tr>
+                    <tr>
+                        <td>MODIFIED:</td>
+                        <td>time</td>
+                    </tr>
+                    <tr>
+                        <td>MODIFIED BY:</td>
+                        <td>Emp2</td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div>STATUS</div>
+            <select class="form-control" id="select_status"></select>
+            <br/>
+            <div>PERCENTAGE COMPLETE</div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="0" class="slider form-control" id="percentage_completed" onchange="show_completed_percentage()">
+                        </div>
+                    </td>
+                    <td>
+                        <div id="div_percentage_completed"></div>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <div>ASSIGNED TO</div>
+            <input type="text" class="form-control" />
+            <br/>
+            <div id="div_element">
+                DESCRIPTION
+                <br/>
+                <textarea name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
+            </div>
+            <br/><br/>
+            <button class="form-control button_save">SAVE</button>
+        </div>
+    </div>
+</body>
+<script>
+    function set_status() {
+        var full_code = "";
+        for (var i=0;i<status_.length;i++) {
+            full_code += "<option>"+status_[i]+"</option>";
+        }
+        document.getElementById("select_status").innerHTML = full_code;
+    }
+    function show_completed_percentage() {
+        per_value = document.getElementById("percentage_completed").value;
+        document.getElementById("div_percentage_completed").innerHTML = " "+per_value+" %";
+    }
+    set_status();
+    show_completed_percentage();
+</script>
+</html>
+
